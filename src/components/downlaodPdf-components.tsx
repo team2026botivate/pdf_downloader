@@ -1,7 +1,7 @@
 "use client";
 
 import { supabase } from "@/helper/supabase";
-import { Download } from "lucide-react";
+import { Download, Loader, LoaderCircle } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
@@ -59,7 +59,11 @@ const DownloadPdf = () => {
           onClick={handleDownload}
           className="inline-flex items-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-lg font-semibold text-lg hover:bg-slate-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
         >
-          <Download className="w-5 h-5" />
+          {loading ? (
+            <LoaderCircle className="size-5 animate-spin" />
+          ) : (
+            <Download className="w-5 h-5" />
+          )}
           Download PDF
         </button>
       </div>
