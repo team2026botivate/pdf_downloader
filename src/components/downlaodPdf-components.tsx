@@ -20,15 +20,15 @@ const DownloadPdf = () => {
       setloading(true);
       const { data } = await supabase.storage
         .from("pdf")
-        .getPublicUrl('billUpload/TXN-7632cb14-e071-41b8-ad9a-1058848c980c-vikas.pdf');
+        .getPublicUrl(`billUpload/${path}`);
 
       const res = await fetch(data.publicUrl);
       const blob = await res.blob();
 
       const link = document.createElement("a");
       link.href = window.URL.createObjectURL(blob);
-      link.download = path; 
-      link.click()
+      link.download = path;
+      link.click();
       window.URL.revokeObjectURL(link.href);
     } catch (error) {
       console.error("Error downloading file:", error);
